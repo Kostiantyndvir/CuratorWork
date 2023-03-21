@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Звіти";
+    Layout = "/Views/Shared/_LayoutCurator.cshtml";
+}
+@if (ViewBag.Reports != null)
+{
+    @foreach (Report item in ViewBag.Reports)
+    {
+        <p>
+            <div>@item.Interval ( @item.Date ) група : @item.Group.Name</div>
+        <div>@item.Description</div>
+        </p>
+    }
+}
+<form method='post' action="">
+    <p>
+        <label>Інтервал</label><br />
+        <input type='text' name='interval' style="width:100%" />
+    </p>
+    <p>
+        <label>Група</label><br />
+        <select name='group' style="width:100%">
+            @foreach (Group item in ViewBag.Groups)
+            {
+                <option value="@item.Name">@item.Name</option>
+            }
+        </select>
+    </p>
+    <p>
+        <label>Звіт</label><br />
+        <textarea name="description" style="width:100%;height:100px" ></textarea>
+    </p>
+    <input type='submit' value='Додати' />
+</form>

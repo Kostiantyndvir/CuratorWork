@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Авторизація";
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Авторизація</h1>
+    <form method='post' action="/Login">
+        <p>
+            <label>Логін</label><br />
+            <input name='login' />
+        </p>
+        <p>
+            <label>Пароль</label><br />
+            <input type='password' name='password' />
+        </p>
+        <input type='submit' value='Увійти' />
+    </form>
+    <a href="/Home/Registration">реєстрація</a>
+</div>

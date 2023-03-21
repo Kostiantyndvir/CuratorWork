@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Групи";
+    Layout = "/Views/Shared/_LayoutCurator.cshtml";
+}
+@if (ViewBag.Groups != null)
+{
+    <span>групи</span>
+    @foreach (Group item in ViewBag.Groups)
+    {
+        <p>@item.Name</p>
+       
+    }
+}
+<form method='post' action="">
+    <p>
+        <label>Додати групу</label><br />
+        <input type='text' name='name' />
+    </p>
+    <input type='submit' value='Додати' />
+
+</form>

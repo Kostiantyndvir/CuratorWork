@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Студенти";
+    Layout = "/Views/Shared/_LayoutInspector.cshtml";
+}
+@if (ViewBag.Departments != null)
+{
+    @foreach (Department item in ViewBag.Departments)
+    {
+        <p>
+            @item.Name <span> : </span>
+            @foreach (Kurator kurator in item.Kurators)
+            {
+                <div>
+                @kurator.Name @kurator.Email @kurator.Phone <span> - </span>
+                <span> 
+                    @foreach (Group group in kurator.Groups)
+                    {
+                        <a href="?idF=@group.Id">@group.Name</a>
+                    }
+                </span>
+                </div>
+            }
+        </p>
+    }
+}
+@if (ViewData["group"] != null)
+{
+    <h2>@ViewData["group"] : @ViewData["kurator"]</h2>
+    <!-- Tab links -->
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'London')">Студенти</button>
+        <button class="tablinks" onclick="openCity(event, 'Paris')">Події студентів</button>
+        <button class="tablinks" onclick="openCity(event, 'Tokyo')">Звіти кураторів</button>
+    </div>
+
+    <!-- Tab content -->
+    <div id="London" class="tabcontent">
+        <h3>Студенти</h3>
+        <p>
+            @if (ViewBag.students != null)
+            {
+                <ol>
+                    @foreach (Student item in ViewBag.students)
+                    {
+                    <li>
+                        @item.Name ( @item.Phone ) ; @item.Parents ( @item.ParentPhone ) ; @item.AddressHome ( @item.AddressStudy ) ; @item.Activities
+                    </li>
+                    }
+                </ol>
+            }
+        </p>
+    </div>
+
+    <div id="Paris" class="tabcontent">
+        <h3>Події групи</h3>
+        <p>
+            @if (ViewBag.events != null)
+            {
+            @foreach (Event item in ViewBag.events)
+            {
+                <p>
+                @item.Date <span> - </span> @item.Name
+                </p>
+            }
+            }
+
+        </p>
+    </div>
+
+    <div id="Tokyo" class="tabcontent">
+        <h3>Звіти кураторів</h3>
+        <p>
+            @if (ViewBag.reports != null)
+            {
+            @foreach (Report item in ViewBag.reports)
+            {<p>
+                @item.Date <span> - </span> @item.Interval <br />
+                <span> : </span> @item.Description
+                </p>
+            }
+            }
+        </p>
+    </div>
+}
+
+

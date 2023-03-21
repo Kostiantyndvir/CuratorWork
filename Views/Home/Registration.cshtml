@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Реєстрація";
+}
+@model List<Department>
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    <form method='post'>
+        <p>
+            <label>ПІБ</label><br />
+            <input type='text' name='name' />
+        </p>
+        <p>
+            <label>Email</label><br />
+            <input type='email' name='email' />
+        </p>
+        <p>
+            <label>Phone</label><br />
+            <input type='text' name='phone' />
+        </p>
+        <p>
+            <label>Логін</label><br />
+            <input type='text' name='login' />
+        </p>
+        <p>
+            <label>Пароль</label><br />
+            <input type='password' name='password' />
+        </p>
+        <p>
+            <label>Відділ</label><br />
+            <select name="department">
+                @foreach(Department item in Model)
+                {
+                    <option value="@item.Name">@item.Name</option>
+                }
+            </select>
+        </p>
+        <input type='submit' value='Увійти' />
+    </form>
+</div>

@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Студенти";
+    Layout = "/Views/Shared/_LayoutCurator.cshtml";
+}
+<form method='post' action="/Curator/GhangeGroup">
+    <label>Група</label>
+    <select name="groupC">
+        @if (ViewBag.Groups != null)
+        {
+            @foreach (Group item in ViewBag.Groups)
+            {
+                @if (@ViewData["group"] == @item.Name.ToString())
+                {
+                    <option value="@item.Name" selected>@item.Name</option>
+                }
+                else
+                {
+                    <option value="@item.Name">@item.Name</option>
+                }
+            }
+        }
+    </select>
+    <input type='submit' value='Вибрати іншу' />
+</form>
+<ol>
+    @if (ViewBag.Studs !=null ){
+    @foreach (Student item in ViewBag.Studs)
+        {
+        <li>
+            @item.Name 
+            @item.Phone
+            @item.Parents
+            @item.ParentPhone
+            @item.AddressHome
+            @item.AddressStudy
+            @item.Activities
+        </li>
+        }
+    }
+</ol>
+<form method='post' action="">
+    <p>
+        <label>ПІБ</label><br />
+        <input type='text' name='name' style="width:100%" />
+    </p>
+    <p>
+        <label>Батьки</label><br />
+        <input type='text' name='parents' style="width:100%" />
+    </p>
+    <p>
+        <label>Телефон</label><br />
+        <input type='text' name='phone' style="width:100%" />
+    </p>
+    <p>
+        <label>Телефон батьків</label><br />
+        <input type='text' name='parentphone' style="width:100%" />
+    </p>
+    <p>
+        <label>Домашній адрес</label><br />
+        <input type='text' name='addresshome' style="width:100%" />
+    </p>
+    <p>
+        <label>Адрес під час навчання</label><br />
+        <input type='text' name='addressstudy' style="width:100%" />
+    </p>
+    <p>
+        <label>Діяльність, активності</label><br />
+        <input type='text' name='activities' style="width:100%" />
+    </p>
+    <p>
+        <label>Група</label><br />
+        <input type='text' readonly name='group' value='@ViewData["group"]' style="width:100%" />
+    </p>
+    <input type='submit' value='Додати' />
+</form>

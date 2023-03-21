@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Події / Заходи";
+    Layout = "/Views/Shared/_LayoutCurator.cshtml";
+}
+@if (ViewBag.Events != null)
+{
+    @foreach (Event item in ViewBag.Events)
+    {
+        <p>
+            @item.Name ( @item.Date ) група : @item.Group.Name
+        </p>
+    }
+}
+<form method='post' action="">
+    <p>
+        <label>Назва</label><br />
+        <input type='text' name='name' style="width:100%" />
+    </p>
+    <p>
+        <label>Дата</label><br />
+        <input type='date' name='date' style="width:100%" />
+    </p>
+    <p>
+        <label>Група</label><br />
+        <select name='group' style="width:100%">
+            @foreach (Group item in ViewBag.Groups)
+            {
+                <option value="@item.Name">@item.Name</option>
+            }
+        </select>
+    </p>
+    <input type='submit' value='Додати' />
+</form>
